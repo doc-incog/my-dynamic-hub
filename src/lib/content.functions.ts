@@ -114,7 +114,7 @@ export const getProjectBySlug = createServerFn({ method: "GET" })
       .maybeSingle();
     if (error) throw new Error(error.message);
     if (!row) return null;
-    const [project] = await withProjectImages([row]);
+    const project = (await withProjectImages([row]))[0]!;
     const { data: related } = await client
       .from("projects")
       .select("*")
