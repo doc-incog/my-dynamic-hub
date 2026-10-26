@@ -35,6 +35,69 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   });
 }
 
+function contentSecurityPolicy(): string | null {
+  if (process.env["NODE_ENV"] === "development") return null;
+
+  const supabaseUrl = process.env["SUPABASE_URL"];
+  let supabaseOrigin = "";
+  let supabaseSocket = "";
+  try {
+    const url = new URL(supabaseUrl ?? "");
+    supabaseOrigin = url.origin;
+    supabaseSocket = `wss://${url.host}`;
+  } catch {
+    // Supabase env values are optional here; the app already validates them.
+  }
+
+  const connect = [
+    "'self'",
+    supabaseOrigin,
+    supabaseSocket,
+    "https://*.supabase.co",
+    "wss://*.supabase.co",
+    "https://challenges.cloudflare.com",
+  ].filter(Boolean);
+
+  return [
+    "default-src 'self'",
+    "base-uri 'self'",
+    "object-src 'none'",
+    "frame-ancestors 'none'",
+    "form-action 'self'",
+    "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://challenges.cloudflare.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    `img-src 'self' data: blob:${supabaseOrigin ? ` ${supabaseOrigin}` : ""} https://*.supabase.co`,
+    `connect-src ${connect.join(" ")}`,
+    "frame-src https://challenges.cloudflare.com",
+    "worker-src 'self' blob:",
+    "upgrade-insecure-requests",
+  ].join("; ");
+}
+
+function withSecurityHeaders(response: Response): Response {
+  const headers = new Headers(response.headers);
+
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+  headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  headers.set("Cross-Origin-Resource-Policy", "same-origin");
+
+  if (process.env["NODE_ENV"] !== "development") {
+    headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    const csp = contentSecurityPolicy();
+    if (csp) headers.set("Content-Security-Policy", csp);
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 function isH3SwallowedErrorBody(body: string): boolean {
   try {
     const payload = JSON.parse(body) as { unhandled?: unknown; message?: unknown };
@@ -49,13 +112,15 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      return withSecurityHeaders(await normalizeCatastrophicSsrResponse(response));
     } catch (error) {
       console.error(error);
-      return new Response(renderErrorPage(), {
-        status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
-      });
+      return withSecurityHeaders(
+        new Response(renderErrorPage(), {
+          status: 500,
+          headers: { "content-type": "text/html; charset=utf-8" },
+        }),
+      );
     }
   },
 };
