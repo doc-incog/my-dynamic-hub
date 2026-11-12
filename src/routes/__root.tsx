@@ -16,6 +16,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { SITE } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -99,6 +100,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Karla:ital,wght@0,300..700;1,300..600&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: SITE.name,
+          description: `${SITE.tagline}. Handcrafted jute décor and interior design, ${SITE.origin.toLowerCase()}.`,
+          telephone: SITE.phone,
+          foundingDate: "2018-08-06",
+          founder: { "@type": "Person", name: SITE.founder },
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Sahid Marg",
+            addressLocality: SITE.city,
+            addressCountry: "NP",
+          },
+          sameAs: [SITE.instagram, SITE.facebook],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

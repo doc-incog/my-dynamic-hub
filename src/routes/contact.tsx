@@ -3,13 +3,14 @@ import { useServerFn } from "@tanstack/react-start";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Facebook, Instagram, MessageCircle, Phone } from "lucide-react";
 import { submitEnquiry } from "@/lib/content.functions";
 import { PageHero, Section } from "@/components/site/Bits";
 import { Turnstile } from "@/components/site/Turnstile";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { SITE } from "@/lib/site";
 
 const INTERESTS = [
   "Interior design consultation",
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Book an interior design consultation, request a handcrafted jute commission, or ask about products, gift sets and workshops with KRITI'S KIRTI.",
+          "Book an interior design consultation, request a handcrafted jute commission, or ask about products, gift sets and workshops with KRITI'S KIRTI in Biratnagar, Nepal.",
       },
       { property: "og:title", content: "Get in touch — KRITI'S KIRTI" },
       {
@@ -109,8 +110,42 @@ function Contact() {
           <aside className="space-y-10">
             <div>
               <p className="eyebrow">Studio</p>
-              <p className="mt-3 text-base text-foreground">Kathmandu Valley, Nepal</p>
-              <p className="mt-1 text-sm text-muted-foreground">Visits by appointment only</p>
+              <p className="mt-3 text-base text-foreground">{SITE.address}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{SITE.visitNote}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <a
+                  href={SITE.phoneHref}
+                  className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-secondary"
+                >
+                  <Phone className="size-4 text-accent" /> {SITE.phone}
+                </a>
+                <a
+                  href={SITE.whatsapp}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-secondary"
+                >
+                  <MessageCircle className="size-4 text-accent" /> WhatsApp
+                </a>
+              </div>
+              <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
+                <a
+                  href={SITE.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Instagram className="size-4" /> {SITE.instagramHandle}
+                </a>
+                <a
+                  href={SITE.facebook}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Facebook className="size-4" /> Facebook
+                </a>
+              </div>
             </div>
             <div>
               <p className="eyebrow">Helpful to include</p>

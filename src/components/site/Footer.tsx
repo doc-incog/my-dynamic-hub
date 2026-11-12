@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Facebook, Instagram, MapPin, MessageCircle, Phone } from "lucide-react";
 import { NAV_LINKS, SITE } from "@/lib/site";
 
 export function Footer() {
@@ -36,14 +37,69 @@ export function Footer() {
         <div>
           <p className="eyebrow">Studio</p>
           <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
-            <li>Kathmandu Valley, Nepal</li>
-            <li>Commissions and consultations by appointment</li>
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+              <span>{SITE.address}</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Phone className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+              <a href={SITE.phoneHref} className="transition-colors hover:text-foreground">
+                {SITE.phone}
+              </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <MessageCircle className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+              <a
+                href={SITE.whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-foreground"
+              >
+                Message on WhatsApp
+              </a>
+            </li>
+            {SITE.email ? (
+              <li>
+                <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-foreground">
+                  {SITE.email}
+                </a>
+              </li>
+            ) : null}
             <li>
               <Link to="/contact" className="transition-colors hover:text-foreground">
                 Send an enquiry
               </Link>
             </li>
           </ul>
+          <div className="mt-5 flex items-center gap-3">
+            <a
+              href={SITE.instagram}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${SITE.name} on Instagram`}
+              className="rounded-sm border border-border p-2 text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
+            >
+              <Instagram className="size-4" />
+            </a>
+            <a
+              href={SITE.facebook}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${SITE.name} on Facebook`}
+              className="rounded-sm border border-border p-2 text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
+            >
+              <Facebook className="size-4" />
+            </a>
+            <a
+              href={SITE.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${SITE.name} on WhatsApp`}
+              className="rounded-sm border border-border p-2 text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
+            >
+              <MessageCircle className="size-4" />
+            </a>
+          </div>
         </div>
       </div>
 

@@ -52,7 +52,7 @@ function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-24">
           <div className="reveal">
             <p className="eyebrow">
-              {SITE.origin} &middot; Est. by {SITE.founder}
+              {SITE.origin} &middot; Est. {SITE.founded}
             </p>
             <h1 className="mt-5 text-4xl leading-[1.04] text-foreground sm:text-5xl lg:text-[3.9rem]">
               Interior Designing to{" "}

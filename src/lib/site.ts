@@ -18,6 +18,20 @@ export const SITE = {
   philosophy: "Think Local. Design Creatively. Build Sustainably.",
   principle: "Reuse & Recreation",
   origin: "Made in Nepal",
+
+  // Public contact details, shown in the footer and on the contact page.
+  founded: "2018",
+  address: "Biratnagar-8, Sahid Marg, Nepal",
+  city: "Biratnagar",
+  phone: "+977 9804056599",
+  phoneHref: "tel:+9779804056599",
+  whatsapp: "https://wa.me/9779804056599",
+  // Add the enquiry mailbox here once it exists; empty values are not rendered.
+  email: "",
+  instagram: "https://www.instagram.com/kritiid",
+  instagramHandle: "@kritiid",
+  facebook: "https://www.facebook.com/profile.php?id=100054217011222",
+  visitNote: "Visits by appointment — call or message first.",
 };
 
 export const NAV_LINKS = [
