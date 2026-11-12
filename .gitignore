@@ -23,6 +23,7 @@ dist-ssr
 !.dev.vars.example
 
 # Local environment overrides (never commit secrets)
+.env
 .env.local
 .env.*.local
 .env.staging
