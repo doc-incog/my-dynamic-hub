@@ -49,11 +49,14 @@ function AboutHero() {
             className="pointer-events-none absolute bottom-0 left-0 h-full w-auto max-w-none select-none object-contain object-left-bottom [filter:drop-shadow(0_28px_45px_rgba(44,34,26,0.18))]"
           />
         </div>
-        <div className="mt-10 w-full lg:hidden">
+        <div className="w-full lg:hidden">
           <img
             src={aboutFounder}
             alt={`${SITE.founder}, founder of ${SITE.name}`}
-            className="h-[26rem] w-full object-cover object-top"
+            width={1200}
+            height={1003}
+            loading="eager"
+            className="mx-auto h-auto w-full max-w-sm object-contain"
           />
         </div>
       </div>
