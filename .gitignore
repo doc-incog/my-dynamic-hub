@@ -34,6 +34,9 @@ dist-ssr
 .cloudflare-token
 supabase/.temp/
 
+# Original/large source images kept out of git (optimised copies live in src/assets)
+raw-assets/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

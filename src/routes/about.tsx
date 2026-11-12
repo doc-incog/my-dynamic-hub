@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import aboutFounder from "@/assets/about-founder.webp";
 import aboutStudio from "@/assets/about-studio.jpg";
 import heroInterior from "@/assets/hero-interior.jpg";
-import { ButtonLink, PageHero, Section, SectionHeading } from "@/components/site/Bits";
+import { ButtonLink, Section, SectionHeading } from "@/components/site/Bits";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
@@ -24,16 +25,48 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
+function AboutHero() {
+  return (
+    <section className="relative overflow-hidden border-b border-border surface-warm">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 lg:min-h-[31.5rem] lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-0">
+        <div className="relative z-10 max-w-[35rem] lg:self-center">
+          <p className="eyebrow">Our story</p>
+          <h1 className="mt-6 text-[2.5rem] leading-[1.05] text-foreground sm:text-5xl lg:text-[3.375rem]">
+            A journey from interior design into handcrafted sustainability
+          </h1>
+          <p className="mt-6 max-w-[36rem] text-base leading-relaxed text-muted-foreground">
+            {SITE.name} is a signature handcrafted initiative founded by {SITE.founder}, combining her experience in interior designing with her passion for creativity, local craftsmanship and sustainable living.
+          </p>
+        </div>
+        <div className="relative hidden h-[28rem] self-end lg:block lg:w-[125%] lg:max-w-none">
+          <img
+            src={aboutFounder}
+            alt={`${SITE.founder}, founder of ${SITE.name}`}
+            width={1200}
+            height={1003}
+            loading="eager"
+            fetchPriority="high"
+            className="pointer-events-none absolute bottom-0 left-0 h-full w-auto max-w-none select-none object-contain object-left-bottom [filter:drop-shadow(0_28px_45px_rgba(44,34,26,0.18))]"
+          />
+        </div>
+        <div className="mt-10 w-full lg:hidden">
+          <img
+            src={aboutFounder}
+            alt={`${SITE.founder}, founder of ${SITE.name}`}
+            className="h-[26rem] w-full object-cover object-top"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function About() {
   return (
     <>
-      <PageHero
-        eyebrow="Our story"
-        title="A journey from interior design into handcrafted sustainability"
-        description={`${SITE.name} is a signature handcrafted initiative founded by ${SITE.founder}, combining her experience in interior designing with her passion for creativity, local craftsmanship and sustainable living.`}
-      />
+      <AboutHero />
 
-      <Section>
+      <Section className="max-w-6xl">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:items-start">
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
             <p>
