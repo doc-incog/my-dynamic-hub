@@ -137,11 +137,25 @@ function publicClient() {
 async function resolveImage(value: string | null): Promise<string | null> {
   if (!value) return null;
   if (/^https?:\/\//i.test(value) || value.startsWith("/")) return value;
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data } = await supabaseAdmin.storage
-    .from("site-images")
-    .createSignedUrl(value, 60 * 60 * 24 * 7);
-  return data?.signedUrl ?? null;
+  // A missing/invalid service-role key must not take the whole page down:
+  // pages fall back to the bundled placeholder photography instead.
+  try {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data, error } = await supabaseAdmin.storage
+      .from("site-images")
+      .createSignedUrl(value, 60 * 60 * 24 * 7);
+    if (error) {
+      console.error(`[images] could not sign "${value}": ${error.message}`);
+      return null;
+    }
+    return data?.signedUrl ?? null;
+  } catch (error) {
+    console.error(
+      "[images] signing unavailable:",
+      error instanceof Error ? error.message : "unknown error",
+    );
+    return null;
+  }
 }
 
 async function resolveMany(values: string[]): Promise<string[]> {
