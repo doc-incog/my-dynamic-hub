@@ -28,7 +28,10 @@ export const Route = createFileRoute("/about")({
 function AboutHero() {
   return (
     <section className="relative overflow-hidden border-b border-border surface-warm">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 lg:min-h-[31.5rem] lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-0">
+      {/* Bottom padding is dropped on mobile so the founder cut-out sits flush
+          against the section border — the asset is trimmed to the subject, so any
+          space below it reads as a mistake. */}
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pt-20 pb-0 sm:px-8 lg:min-h-[31.5rem] lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-0">
         <div className="relative z-10 max-w-[35rem] lg:self-center">
           <p className="eyebrow">Our story</p>
           <h1 className="mt-6 text-[2.5rem] leading-[1.05] text-foreground sm:text-5xl lg:text-[3.375rem]">
@@ -56,7 +59,7 @@ function AboutHero() {
             width={1200}
             height={1003}
             loading="eager"
-            className="mx-auto h-auto w-full max-w-sm object-contain"
+            className="mx-auto block h-auto w-full max-w-sm object-contain object-bottom"
           />
         </div>
       </div>
