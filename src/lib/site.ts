@@ -3,7 +3,7 @@ import juteCoasters from "@/assets/product-jute-coasters.jpg";
 import juteTote from "@/assets/product-jute-tote.jpg";
 import juteEarrings from "@/assets/product-jute-earrings.webp";
 import juteEarringsCoiled from "@/assets/product-jute-earrings-coiled.webp";
-import juteMirror from "@/assets/product-jute-mirror.jpg";
+import juteMirror from "@/assets/product-jute-mirror.webp";
 import juteWallHanging from "@/assets/product-jute-wall-hanging.jpg";
 import juteCushion from "@/assets/product-jute-cushion.jpg";
 import juteBasket from "@/assets/product-jute-basket.jpg";
