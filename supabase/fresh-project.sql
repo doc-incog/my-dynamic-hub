@@ -152,6 +152,10 @@ INSERT INTO public.products (name, slug, category, short_description, descriptio
 ('Jute Storage Basket', 'jute-storage-basket', 'Storage', 'A soft-sided basket that holds its shape beautifully.', 'A hand-coiled jute basket with rolled handles for blankets, toys or plant pots. Structured enough to stand on its own, soft enough to sit against a wall without scratching it.', 2200, false, 9),
 ('Floral Print Saree — Magenta', 'floral-print-saree-magenta', 'Textiles', 'Deep magenta saree with a hand-drawn floral print.', 'A fluid saree in deep magenta printed with a scattered floral motif and finished with a fine gold border. Shown here with our jute rug and braided rope mirror. Price on request while fabric options and lead times are confirmed.', NULL, false, 10);
 
+-- The original open-ring pair was retired in favour of the coiled-disc pair.
+-- Kept as a row (unpublished) so it can be restored by flipping this flag.
+UPDATE public.products SET published = false WHERE slug = 'jute-thread-earrings';
+
 INSERT INTO public.projects (title, slug, location, year, summary, description, sort_order) VALUES
 ('Warm Minimal Apartment Living Room', 'warm-minimal-apartment-living-room', 'Lalitpur, Nepal', '2025', 'A compact family living room rebuilt around natural fibre and daylight.', 'The brief was a calm, low-maintenance living room for a family of four. We kept the existing terrazzo floor, added a hand-braided jute rug, custom jute wall panels for acoustics and a reclaimed timber media unit. Locally made cushions and a braided mirror frame complete the space.', 1),
 ('Café Interior in Natural Fibre', 'cafe-interior-in-natural-fibre', 'Kathmandu, Nepal', '2025', 'A twenty-two seat café styled with woven partitions and warm lighting.', 'A neighbourhood café that needed personality without heavy construction. We designed woven jute partitions to break the long room into pockets, added layered wall hangings behind the counter and specified warm dimmable lighting so the space works from morning coffee through evening.', 2),
