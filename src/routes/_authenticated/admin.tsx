@@ -78,6 +78,16 @@ const CONFIG: Record<TableName, { label: string; titleKey: string; fields: Field
 
 type Row = Record<string, unknown> & { id?: string };
 
+// One shared query so the tab badge and the enquiry list never disagree.
+async function fetchEnquiries() {
+  const { data, error } = await supabase
+    .from("enquiries")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data;
+}
+
 function slugify(v: string) {
   return v
     .toLowerCase()
@@ -90,6 +100,12 @@ function AdminPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [tab, setTab] = useState<"enquiries" | TableName>("enquiries");
+
+  const enquiries = useQuery({
+    queryKey: ["admin", "enquiries"],
+    queryFn: fetchEnquiries,
+  });
+  const unhandled = enquiries.data?.filter((e) => !e.handled).length ?? 0;
 
   const role = useQuery({
     queryKey: ["is-admin"],
@@ -148,6 +164,19 @@ function AdminPage() {
                 )}
               >
                 {t === "enquiries" ? "Enquiries" : CONFIG[t].label}
+                {t === "enquiries" && unhandled > 0 ? (
+                  <span
+                    aria-label={`${unhandled} unhandled`}
+                    className={cn(
+                      "ml-2 rounded-full px-2 py-0.5 text-[0.65rem] tracking-normal",
+                      tab === t
+                        ? "bg-primary-foreground text-primary"
+                        : "bg-accent text-accent-foreground",
+                    )}
+                  >
+                    {unhandled}
+                  </span>
+                ) : null}
               </button>
             ))}
           </div>
@@ -164,14 +193,7 @@ function Enquiries() {
   const qc = useQueryClient();
   const q = useQuery({
     queryKey: ["admin", "enquiries"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("enquiries")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return data;
-    },
+    queryFn: fetchEnquiries,
   });
 
   async function toggle(id: string, handled: boolean) {
