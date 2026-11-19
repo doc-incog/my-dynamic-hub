@@ -1,6 +1,11 @@
-# My Dynamic Hub
+# KRITI'S KIRTI
 
-i want to create a dynamic website for my solopreneur
+Handcrafted jute décor and sustainable interiors by Kriti Shrestha Upadhyaya,
+Biratnagar, Nepal. Built with TanStack Start, Supabase and Cloudflare Workers.
+
+- [Owner guide](docs/owner-guide.md) — enquiries, catalogue edits, email alerts,
+  spam protection and going live on a domain.
+- [Supabase setup](supabase/SETUP.md) — rebuild the backend from scratch.
 
 This project was built with [Lovable](https://lovable.dev).
 

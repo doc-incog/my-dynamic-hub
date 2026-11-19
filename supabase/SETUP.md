@@ -1,5 +1,8 @@
 # Supabase setup
 
+For day-to-day running of the live site (enquiries, products, email alerts),
+see the [owner guide](../docs/owner-guide.md).
+
 The site reads its products, projects, services and enquiries from a Supabase
 project. This is how to stand one up from scratch (or rebuild it if a project is
 ever lost).
@@ -16,7 +19,7 @@ Open **SQL Editor → New query**, paste the whole of
 [`fresh-project.sql`](./fresh-project.sql) and press **Run**. It creates the
 tables, roles, row-level security policies, the `site-images` storage bucket,
 the enquiry rate limiter, and the seeded catalogue. It should finish with
-*"Success. No rows returned"*.
+_"Success. No rows returned"_.
 
 Add every person who should be able to sign in to `owner_allowlist` at the top of
 that file (`insert into public.owner_allowlist`). The signup trigger rejects any
@@ -41,11 +44,11 @@ on conflict do nothing;
 
 `Project Settings → API`:
 
-| Value | Goes into |
-|---|---|
-| Project URL | `SUPABASE_URL` and `VITE_SUPABASE_URL` |
+| Value           | Goes into                                                      |
+| --------------- | -------------------------------------------------------------- |
+| Project URL     | `SUPABASE_URL` and `VITE_SUPABASE_URL`                         |
 | Publishable key | `SUPABASE_PUBLISHABLE_KEY` and `VITE_SUPABASE_PUBLISHABLE_KEY` |
-| Secret key | `SUPABASE_SERVICE_ROLE_KEY` (**server only**) |
+| Secret key      | `SUPABASE_SERVICE_ROLE_KEY` (**server only**)                  |
 
 Put the public values in `.env`, and the server-only values in `.dev.vars`
 (both are gitignored). For the deployed worker:
