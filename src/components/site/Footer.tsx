@@ -60,7 +60,10 @@ export function Footer() {
             </li>
             {SITE.email ? (
               <li>
-                <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-foreground">
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="transition-colors hover:text-foreground"
+                >
                   {SITE.email}
                 </a>
               </li>
@@ -110,6 +113,9 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-5">
             <span>{SITE.principle}</span>
+            <Link to="/privacy" className="transition-colors hover:text-foreground">
+              Privacy
+            </Link>
             <Link to="/auth" className="transition-colors hover:text-foreground">
               Owner login
             </Link>

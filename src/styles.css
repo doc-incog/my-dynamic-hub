@@ -77,7 +77,7 @@
   --secondary-foreground: oklch(0.3 0.026 62);
   --muted: oklch(0.944 0.019 85);
   --muted-foreground: oklch(0.48 0.022 66);
-  --accent: oklch(0.577 0.117 45);
+  --accent: oklch(0.55 0.117 45);
   --accent-foreground: oklch(0.982 0.012 90);
   --destructive: oklch(0.52 0.19 27);
   --destructive-foreground: oklch(0.982 0.012 90);
@@ -91,17 +91,14 @@
   --clay: oklch(0.577 0.117 45);
   --sand: oklch(0.923 0.028 82);
 
-  --gradient-warm: linear-gradient(
-    160deg,
-    oklch(0.973 0.013 85) 0%,
-    oklch(0.938 0.031 82) 100%
-  );
+  --gradient-warm: linear-gradient(160deg, oklch(0.973 0.013 85) 0%, oklch(0.938 0.031 82) 100%);
   --gradient-fibre: linear-gradient(
     100deg,
     color-mix(in oklab, var(--jute) 55%, transparent),
     color-mix(in oklab, var(--clay) 25%, transparent)
   );
-  --shadow-soft: 0 1px 2px color-mix(in oklab, var(--foreground) 6%, transparent),
+  --shadow-soft:
+    0 1px 2px color-mix(in oklab, var(--foreground) 6%, transparent),
     0 18px 40px -24px color-mix(in oklab, var(--foreground) 22%, transparent);
   --shadow-lift: 0 24px 60px -28px color-mix(in oklab, var(--foreground) 32%, transparent);
 
@@ -149,11 +146,7 @@
   --clay: oklch(0.67 0.113 48);
   --sand: oklch(0.305 0.024 64);
 
-  --gradient-warm: linear-gradient(
-    160deg,
-    oklch(0.235 0.018 62) 0%,
-    oklch(0.19 0.014 62) 100%
-  );
+  --gradient-warm: linear-gradient(160deg, oklch(0.235 0.018 62) 0%, oklch(0.19 0.014 62) 100%);
 
   --sidebar: oklch(0.235 0.018 62);
   --sidebar-foreground: oklch(0.945 0.016 88);

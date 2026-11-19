@@ -107,7 +107,7 @@ function Contact() {
 
       <Section>
         <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr]">
-          <aside className="space-y-10">
+          <div className="space-y-10">
             <div>
               <p className="eyebrow">Studio</p>
               <p className="mt-3 text-base text-foreground">{SITE.address}</p>
@@ -160,7 +160,7 @@ function Contact() {
                 Think Local. Design Creatively. Build Sustainably.
               </p>
             </div>
-          </aside>
+          </div>
 
           {sent ? (
             <div className="flex flex-col items-start justify-center rounded-sm border border-border bg-card p-10 shadow-soft">
