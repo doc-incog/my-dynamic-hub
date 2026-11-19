@@ -23,7 +23,7 @@ export const Route = createFileRoute("/services")({
       {
         property: "og:description",
         content:
-          "From a focused design consultation to made-to-measure jute commissions and artisan workshops — what we offer and what it includes.",
+          "From a focused design consultation to made-to-measure jute commissions and artisan workshops - what we offer and what it includes.",
       },
     ],
   }),

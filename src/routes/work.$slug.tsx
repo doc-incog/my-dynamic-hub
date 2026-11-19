@@ -21,20 +21,17 @@ export const Route = createFileRoute("/work/$slug")({
     }
     const { project } = loaderData;
     const title = `${project.title} — KRITI'S KIRTI`;
-    const meta = [
-      { title },
-      { name: "description", content: project.summary },
-      { property: "og:title", content: title },
-      { property: "og:description", content: project.summary },
-    ];
-    const cover = project.cover_image_url;
-    if (cover && /^https:\/\//.test(cover)) {
-      meta.push(
-        { property: "og:image", content: cover },
-        { name: "twitter:image", content: cover },
-      );
-    }
-    return { meta };
+    // Canonical, og:url and the shared share image come from the root route,
+    // which derives them from the matched pathname.
+    return {
+      meta: [
+        { title },
+        { name: "description", content: project.summary },
+        { property: "og:title", content: title },
+        { property: "og:description", content: project.summary },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+    };
   },
   errorComponent: RouteError,
   notFoundComponent: RouteNotFound,

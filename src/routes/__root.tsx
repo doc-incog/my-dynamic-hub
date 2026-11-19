@@ -77,52 +77,73 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "KRITI'S KIRTI — Handcrafted Jute Décor & Interior Design, Nepal" },
-      {
-        name: "description",
-        content:
-          "KRITI'S KIRTI turns locally sourced jute and reused materials into handcrafted décor, and designs interiors that are creative, functional and sustainable. Made in Nepal.",
-      },
-      { name: "author", content: "Kriti Shrestha Upadhyaya" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Karla:ital,wght@0,300..700;1,300..600&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: SITE.name,
-          description: `${SITE.tagline}. Handcrafted jute décor and interior design, ${SITE.origin.toLowerCase()}.`,
-          telephone: SITE.phone,
-          foundingDate: "2018-08-06",
-          founder: { "@type": "Person", name: SITE.founder },
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Sahid Marg",
-            addressLocality: SITE.city,
-            addressCountry: "NP",
-          },
-          sameAs: [SITE.instagram, SITE.facebook],
-        }),
-      },
-    ],
-  }),
+  head: ({ matches }) => {
+    // One canonical for the whole site, derived from the deepest matched route so
+    // parent routes can't emit a competing URL for their child pages.
+    const pathname = matches[matches.length - 1]?.pathname ?? "/";
+    const canonical = pathname === "/" ? SITE.url : `${SITE.url}${pathname}`;
+
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: "KRITI'S KIRTI — Handcrafted Jute Décor & Interior Design, Nepal" },
+        {
+          name: "description",
+          content:
+            "KRITI'S KIRTI turns locally sourced jute and reused materials into handcrafted décor, and designs interiors that are creative, functional and sustainable. Made in Nepal.",
+        },
+        { name: "author", content: "Kriti Shrestha Upadhyaya" },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: SITE.name },
+        { property: "og:locale", content: "en_NP" },
+        { property: "og:url", content: canonical },
+        // Stable absolute URL so link previews work on WhatsApp, Facebook and X.
+        { property: "og:image", content: `${SITE.url}/og-image.jpg` },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        {
+          property: "og:image:alt",
+          content: `${SITE.name} — handcrafted jute décor and interiors`,
+        },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: `${SITE.url}/og-image.jpg` },
+        { name: "theme-color", content: "#1f3d2b" },
+      ],
+      links: [
+        { rel: "canonical", href: canonical },
+        { rel: "stylesheet", href: appCss },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Karla:ital,wght@0,300..700;1,300..600&display=swap",
+        },
+        { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: SITE.name,
+            description: `${SITE.tagline}. Handcrafted jute décor and interior design, ${SITE.origin.toLowerCase()}.`,
+            telephone: SITE.phone,
+            foundingDate: "2018-08-06",
+            founder: { "@type": "Person", name: SITE.founder },
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Sahid Marg",
+              addressLocality: SITE.city,
+              addressCountry: "NP",
+            },
+            sameAs: [SITE.instagram, SITE.facebook],
+          }),
+        },
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

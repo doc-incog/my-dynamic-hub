@@ -21,6 +21,10 @@ export const SITE = {
   principle: "Reuse & Recreation",
   origin: "Made in Nepal",
 
+  // Canonical origin, used for canonical links, Open Graph URLs and the sitemap.
+  // Change this one value when the site moves to its own domain.
+  url: "https://kritis-kirti-staging.kritis-kirti.workers.dev",
+
   // Public contact details, shown in the footer and on the contact page.
   founded: "2018",
   address: "Biratnagar-8, Sahid Marg, Nepal",

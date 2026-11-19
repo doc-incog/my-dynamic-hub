@@ -14,3 +14,5 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /auth
+
+Sitemap: https://kritis-kirti-staging.kritis-kirti.workers.dev/sitemap.xml

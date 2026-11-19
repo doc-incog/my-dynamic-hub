@@ -38,7 +38,9 @@ function AboutHero() {
             A journey from interior design into handcrafted sustainability
           </h1>
           <p className="mt-6 max-w-[36rem] text-base leading-relaxed text-muted-foreground">
-            {SITE.name} is a signature handcrafted initiative founded by {SITE.founder}, combining her experience in interior designing with her passion for creativity, local craftsmanship and sustainable living.
+            {SITE.name} is a signature handcrafted initiative founded by {SITE.founder}, combining
+            her experience in interior designing with her passion for creativity, local
+            craftsmanship and sustainable living.
           </p>
         </div>
         <div className="relative hidden h-[28rem] self-end lg:block lg:w-[125%] lg:max-w-none">

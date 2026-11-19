@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Public pages only. /auth and /admin are owner routes and are excluded.
+  Project URLs are listed explicitly: add a <url> block here when a new project
+  is published, or regenerate this file from the projects table.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/about</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/work</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/work/warm-minimal-apartment-living-room</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/work/cafe-interior-in-natural-fibre</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/work/sustainable-home-office-corner</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/work/handcrafted-gift-studio-display</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kritis-kirti-staging.kritis-kirti.workers.dev/contact</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
