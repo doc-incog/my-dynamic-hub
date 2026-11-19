@@ -3,6 +3,7 @@ import juteCoasters from "@/assets/product-jute-coasters.jpg";
 import juteTote from "@/assets/product-jute-tote.jpg";
 import juteEarrings from "@/assets/product-jute-earrings.webp";
 import juteEarringsCoiled from "@/assets/product-jute-earrings-coiled.webp";
+import saree from "@/assets/product-saree.webp";
 import juteMirror from "@/assets/product-jute-mirror.webp";
 import juteWallHanging from "@/assets/product-jute-wall-hanging.jpg";
 import juteCushion from "@/assets/product-jute-cushion.jpg";
@@ -53,6 +54,7 @@ export const FALLBACK_IMAGES: Record<string, string> = {
   "everyday-jute-tote-bag": juteTote,
   "jute-thread-earrings": juteEarrings,
   "jute-thread-earrings-coiled": juteEarringsCoiled,
+  "floral-print-saree-magenta": saree,
   "braided-jute-mirror-frame": juteMirror,
   "layered-jute-wall-hanging": juteWallHanging,
   "reused-fabric-jute-cushion": juteCushion,
