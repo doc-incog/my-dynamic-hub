@@ -25,9 +25,13 @@ export function ProductCard({ product }: { product: Product }) {
         </span>
       </div>
       <h3 className="mt-4 text-lg leading-snug text-foreground">{product.name}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-        {product.short_description}
-      </p>
+      {product.short_description ? (
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+          {product.short_description}
+        </p>
+      ) : (
+        <div className="flex-1" aria-hidden="true" />
+      )}
       <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
         <span className="text-sm font-semibold text-foreground">
           {formatPrice(product.price === null ? null : Number(product.price), product.currency)}
